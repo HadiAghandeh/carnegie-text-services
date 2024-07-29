@@ -1,0 +1,20 @@
+{
+    "name": "hadi-aghandeh/carnegie-text-service",
+    "description": "a wrapper around carnegie text service API",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "HadiAghandeh\\CarnegieTextService\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "HadiAghandeh",
+            "email": "hadi.aghandeh@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7"
+    }
+}
