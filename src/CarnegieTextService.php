@@ -74,14 +74,14 @@ class CarnegieTextService
 		[$dateTime, $hash] = $this->credential->EssayCredential($this->password, $essayId);
 
         $data = [
-			'Requester' => $this->requester,
-			'EssayID' => $essayId,
-			'Question' => $question,
-			'Essay_1' => $essay1,
-			'Essay_2' => $essay2,
-			'Essay_3' => $essay3,
-			'DateTimeStamp' => $dateTime,
-			'HashToken' => $hash
+			'requester' => $this->requester,
+			'essayID' => $essayId,
+			'question' => $question,
+			'essay_1' => $essay1,
+			'essay_2' => $essay2,
+			'essay_3' => $essay3,
+			'dateTimeStamp' => $dateTime,
+			'hashToken' => $hash
 		];
 
 		$url = self::URLS['essay-add'];
@@ -109,14 +109,14 @@ class CarnegieTextService
 
 
         $data = array_filter([
-			'Requester' => $this->requester,
-			'EssayID' => $essayId,
-			'Question' => $question,
-			'Response_1' => $essay1,
-			'Response_2' => $essay2,
-			'Response_3' => $essay3,
-			'DateTimeStamp' => $dateTime,
-			'HashToken' => $hash
+			'requester' => $this->requester,
+			'essayID' => $essayId,
+			'question' => $question,
+			'response_1' => $essay1,
+			'response_2' => $essay2,
+			'response_3' => $essay3,
+			'dateTimeStamp' => $dateTime,
+			'hashToken' => $hash
 		]);
 
         $url = self::URLS['essay-update'];
