@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HadiAghandeh\CarnegieTextService;
 
 use HadiAghandeh\CarnegieTextService\CarnegieCredential;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GClient;
 
 class CarnegieTextService
 {
@@ -38,7 +38,6 @@ class CarnegieTextService
 	{
 		[$dateTime, $hash] = $this->credential->GradeTextHash($this->password, $essay);
 
-
         $data = [
 			'requester' => $requester ?? $this->requester,
 			'requesterID' => $requesterId ?? $this->requesterID,
@@ -49,14 +48,20 @@ class CarnegieTextService
 			'hashToken' => $hash
 		];
 
-        $client = new GuzzleHttp\Client();
+
+        $client = new GClient();
 
         $url = self::URLS['grade-text'];
-        $res = $client->request('POST', $url, $data);
 
-        $body = $res->getBody();
+		$options = [
+			'form_params' => $data
+		];
 
-		return json_decode($body, true);
+        $res = $client->post( $url, $options);
+
+        $body = $res->getBody()->getContents();
+
+		return json_decode(trim($body), true);
 	}
 
 	public function addEssay(
@@ -81,14 +86,16 @@ class CarnegieTextService
 
 		$url = self::URLS['essay-add'];
 
-        $client = new GuzzleHttp\Client();
+		$options = [
+			'form_params' => $data
+		];
+        $client = new GClient();
 
-        $url = self::URLS['grade-text'];
-        $res = $client->request('POST', $url, $data);
+        $res = $client->post( $url, $options);
 
-        $body = $res->getBody();
+        $body = $res->getBody()->getContents();
 
-		return json_decode($body);
+		return json_decode(trim($body), true);
 	}
 
 	public function updateEssay(
@@ -112,14 +119,17 @@ class CarnegieTextService
 			'HashToken' => $hash
 		]);
 
-        $client = new GuzzleHttp\Client();
-
         $url = self::URLS['essay-update'];
-		$res = $client->request('POST', $url, $data);
+		$options = [
+			'form_params' => $data
+		];
+        $client = new GClient();
 
-        $body = $res->getBody();
+        $res = $client->post( $url, $options);
 
-		return json_decode($body);
+        $body = $res->getBody()->getContents();
+
+		return json_decode(trim($body), true);
 	}
 
 
