@@ -10,14 +10,14 @@ class CarnegieCredential
 {
   public function GradeTextHash($password, $essay) {
 
-    $dateTime = DateTime::createFromFormat('Y-m-d\TH:i:s.v', microtime(true));
+	$dateTime = (new DateTime())->format('Y-m-d\TH:i:s.v');
 
 	return [$dateTime, hash_hmac('sha256', $essay . '-' . $dateTime, $password)];
   }
 
   public function EssayCredential($password, $essayId) {
 
-    $dateTime = DateTime::createFromFormat('Y-m-d\TH:i:s.v', microtime(true));
+	$dateTime = (new DateTime())->format('Y-m-d\TH:i:s.v');
 
 	return [$dateTime, hash_hmac('sha256', $essayId . '-' . $dateTime, $password)];
   }
