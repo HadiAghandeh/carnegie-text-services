@@ -2,7 +2,9 @@
 
 ## Overview
 
-The `CarnegieTextService` PHP package provides a set of functionalities to interact with the Carnegie Text Service API. This package allows users to grade texts and manage essays using the provided API endpoints. 
+The `CarnegieTextService` PHP package provides a set of functionalities to interact with the Carnegie Text Service API. This package allows users to grade texts and manage essays using the provided API endpoints.
+
+This is not an official package.
 
 ## Installation
 
