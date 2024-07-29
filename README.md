@@ -28,6 +28,15 @@ $service = new CarnegieTextService($password, $requester, $requesterID);
 // Grading an essay
 $response = $service->gradeText('essay123', 'user456', 'This is the content of the essay.');
 print_r($response);
+/*
+[
+  "overall" => 3.25
+  "lexical" => 3
+  "task" => 3
+  "grammar" => 5
+  "cohesion" => 2
+]
+*/
 
 // Adding a new essay
 $response = $service->addEssay(
@@ -38,6 +47,18 @@ $response = $service->addEssay(
     'The meaning of life is a product of evolution and the natural processes that led to our existence. We are here as a result of the biological imperative to survive, reproduce, and pass on our genes, while also having the capacity to explore, understand, and shape our environment.' // example response 3
 );
 print_r($response);
+
+/*
+[
+  "status" => "success"
+  "data" => array:1 [
+    "essay" => array:1 [
+      "essay_id" => "essay123"
+    ]
+  ]
+  "message" => "New essay added successfully."
+]
+ */
 
 // Updating an existing essay
 $response = $service->updateEssay('essay123', 'Updated question?', 'Updated essay 1 content', 'Updated essay 2 content', 'Updated essay 3 content');
