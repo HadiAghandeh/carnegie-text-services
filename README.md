@@ -6,6 +6,7 @@ The `CarnegieTextService` PHP package provides a set of functionalities to inter
 
 **This project is an unofficial wrapper for the Carnegie Text Service API. It is not endorsed or certified by Carnegie Speech or any similar companies. Use at your own risk.**
 
+**To use Carnegie Text Service API you need to obtain credentials from Carnegie Speech**
 ## Installation
 
 To install the package, use Composer:
@@ -17,8 +18,6 @@ composer require hadiaghandeh/carnegie-text-service
 # Usage
 
 ```php
-use HadiAghandeh\CarnegieTextService\CarnegieTextService;
-
 use HadiAghandeh\CarnegieTextService\CarnegieTextService;
 
 $password = 'your_password';
