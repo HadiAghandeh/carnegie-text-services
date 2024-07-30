@@ -12,7 +12,7 @@ The `CarnegieTextService` PHP package provides a set of functionalities to inter
 To install the package, use Composer:
 
 ```bash
-composer require hadiaghandeh/carnegie-text-service
+composer require hadi-aghandeh/carnegie-text-service
 ```
 
 # Usage
