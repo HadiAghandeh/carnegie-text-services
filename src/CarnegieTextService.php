@@ -136,7 +136,7 @@ class CarnegieTextService
 	const URLS = [
 		'grade-text' => 'http://textservices.carnegiespeech.com/gradeAPI.php',
 		'essay-add' => 'https://textservices.carnegiespeech.com/ts_add_essay.php',
-		'essay-update' => 'https://textservices.carnegiespeech.com/tsf_update_essay.php',
+		'essay-update' => 'https://textservices.carnegiespeech.com/ts_update_essay.php',
 	];
 
 }
