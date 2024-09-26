@@ -132,11 +132,53 @@ class CarnegieTextService
 		return json_decode(trim($body), true);
 	}
 
+    public function suggestion(
+        $essayId,
+		$userId,
+		$essay,
+        $essayType = 'Opinion',
+        $instructionalMaterial = 'Instructions',
+        $supplementalMaterial = 'Supplemental Material',
+		$requesterId = null,
+		$requester = null,
+    ) {
+		[$dateTime, $hash] = $this->credential->GradeTextHash($this->password, $essayId);
+
+        $data = array_filter([
+			'requester' => $requester ?? $this->requester,
+			'essayID' => $essayId,
+			'userId' => $userId,
+			'essay' => $essay,
+			'essayType' => $essayType,
+			'instructionalMaterial' => $instructionalMaterial,
+            'supplementalMaterial' => $supplementalMaterial,
+            'requesterId' => $requesterId,
+			'dateTimeStamp' => $dateTime,
+			'hashToken' => $hash
+		]);
+
+        $url = self::URLS['suggestion'];
+
+		$options = [
+			'form_params' => $data
+		];
+        
+        $client = new GClient();
+
+        $res = $client->post( $url, $options);
+
+        $body = $res->getBody()->getContents();
+
+		return json_decode(trim($body), true);
+
+    }
+
 
 	const URLS = [
 		'grade-text' => 'http://textservices.carnegiespeech.com/gradeAPI.php',
 		'essay-add' => 'https://textservices.carnegiespeech.com/ts_add_essay.php',
 		'essay-update' => 'https://textservices.carnegiespeech.com/ts_update_essay.php',
+        'suggestion' => 'http://staging-textservices.carnegiespeech.com/gradeAPI.php'
 	];
 
 }
