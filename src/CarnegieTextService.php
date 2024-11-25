@@ -142,10 +142,11 @@ class CarnegieTextService
 		$requesterId = null,
 		$requester = null,
     ) {
-		[$dateTime, $hash] = $this->credential->GradeTextHash($this->password, $essayId);
+		[$dateTime, $hash] = $this->credential->GradeTextHash($this->password, $essay);
 
         $data = array_filter([
 			'requester' => $requester ?? $this->requester,
+			'requesterID' => $requesterId ?? $this->requesterID,
 			'essayID' => $essayId,
 			'userId' => $userId,
 			'essay' => $essay,
@@ -173,12 +174,36 @@ class CarnegieTextService
 
     }
 
+    private $staging = false;
+
+    public function staging() {
+        $this->staging = true;
+        return $this;
+    }
+
+    private function getAPIBaseUrl() {
+        if($this->customBaseURL) {
+            return $this->customBaseURL;
+        }
+
+        return $this->staging 
+        ? "http://textservices.carnegiespeech.com"
+        : "http://staging-textservices.carnegiespeech.com";
+    }
+
+    private $customBaseURL = null;
+
+    private function setCustomBaseURL($baseURL) {
+        $this->customBaseURL = $baseURL;
+        return $this;
+    }
+
 
 	const URLS = [
-		'grade-text' => 'http://textservices.carnegiespeech.com/gradeAPI.php',
-		'essay-add' => 'https://textservices.carnegiespeech.com/ts_add_essay.php',
-		'essay-update' => 'https://textservices.carnegiespeech.com/ts_update_essay.php',
-        'suggestion' => 'http://staging-textservices.carnegiespeech.com/gradeAPI.php'
+		'grade-text' => $this->getAPIBaseUrl() . '/gradeAPI.php',
+		'essay-add' => $this->getAPIBaseUrl() . '/ts_add_essay.php',
+		'essay-update' => $this->getAPIBaseUrl() . '/ts_update_essay.php',
+        'suggestion' => $this->getAPIBaseUrl() . '/gradeAPI.php'
 	];
 
 }
