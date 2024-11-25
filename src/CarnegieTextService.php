@@ -176,7 +176,7 @@ class CarnegieTextService
     }
 
     private function decodeTheResponse($responseBody) {
-        if($$json = json_decode(trim($responseBody), true)) {
+        if($json = json_decode(trim($responseBody), true)) {
             return $json;
         } else {
             return trim($responseBody);
