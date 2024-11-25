@@ -61,7 +61,7 @@ class CarnegieTextService
 
         $body = $res->getBody()->getContents();
 
-		return json_decode(trim($body), true);
+		return $this->decodeTheResponse($body);
 	}
 
 	public function addEssay(
@@ -95,7 +95,7 @@ class CarnegieTextService
 
         $body = $res->getBody()->getContents();
 
-		return json_decode(trim($body), true);
+		return $this->decodeTheResponse($body);
 	}
 
 	public function updateEssay(
@@ -129,7 +129,7 @@ class CarnegieTextService
 
         $body = $res->getBody()->getContents();
 
-		return json_decode(trim($body), true);
+		return $this->decodeTheResponse($body);
 	}
 
     public function suggestion(
@@ -170,8 +170,16 @@ class CarnegieTextService
 
         $body = $res->getBody()->getContents();
 
-		return json_decode(trim($body), true);
+		return $this->decodeTheResponse($body);
 
+    }
+
+    private function decodeTheResponse($responseBody) {
+        if($$json = json_decode(trim($responseBody), true)) {
+            return $json;
+        } else {
+            return trim($responseBody);
+        }
     }
 
     private $staging = false;
