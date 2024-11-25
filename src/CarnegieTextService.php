@@ -215,7 +215,7 @@ class CarnegieTextService
 		'grade-text' => '/gradeAPI.php',
 		'essay-add' => '/ts_add_essay.php',
 		'essay-update' => '/ts_update_essay.php',
-        'suggestion' => '/gradeAPI.php'
+        'suggestion' => '/suggestionAPI/index.php'
 	];
 
 }
