@@ -51,7 +51,7 @@ class CarnegieTextService
 
         $client = new GClient();
 
-        $url = self::URLS['grade-text'];
+        $url = $this->getApiEndpoint('grade-text');
 
 		$options = [
 			'form_params' => $data
@@ -84,7 +84,7 @@ class CarnegieTextService
 			'hashToken' => $hash
 		];
 
-		$url = self::URLS['essay-add'];
+        $url = $this->getApiEndpoint('essay-add');
 
 		$options = [
 			'form_params' => $data
@@ -119,7 +119,8 @@ class CarnegieTextService
 			'hashToken' => $hash
 		]);
 
-        $url = self::URLS['essay-update'];
+        $url = $this->getApiEndpoint('essay-update');
+
 		$options = [
 			'form_params' => $data
 		];
@@ -158,7 +159,7 @@ class CarnegieTextService
 			'hashToken' => $hash
 		]);
 
-        $url = self::URLS['suggestion'];
+        $url = $this->getApiEndpoint('suggestion');
 
 		$options = [
 			'form_params' => $data
@@ -206,12 +207,15 @@ class CarnegieTextService
         return $this;
     }
 
+    private function getApiEndpoint($name) {
+        return $this->getAPIBaseUrl() . self::URLS[$name];
+    }
 
 	const URLS = [
-		'grade-text' => $this->getAPIBaseUrl() . '/gradeAPI.php',
-		'essay-add' => $this->getAPIBaseUrl() . '/ts_add_essay.php',
-		'essay-update' => $this->getAPIBaseUrl() . '/ts_update_essay.php',
-        'suggestion' => $this->getAPIBaseUrl() . '/gradeAPI.php'
+		'grade-text' => '/gradeAPI.php',
+		'essay-add' => '/ts_add_essay.php',
+		'essay-update' => '/ts_update_essay.php',
+        'suggestion' => '/gradeAPI.php'
 	];
 
 }
