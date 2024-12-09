@@ -149,7 +149,7 @@ class CarnegieTextService
 			'requester' => $requester ?? $this->requester,
 			'requesterID' => $requesterId ?? $this->requesterID,
 			'essayID' => $essayId,
-			'userId' => $userId,
+			'userID' => $userId,
 			'essay' => $essay,
 			'essayType' => $essayType,
 			'instructionalMaterial' => $instructionalMaterial,
@@ -196,8 +196,8 @@ class CarnegieTextService
         }
 
         return $this->staging 
-        ? "http://textservices.carnegiespeech.com"
-        : "http://staging-textservices.carnegiespeech.com";
+        ? "http://staging-textservices.carnegiespeech.com"
+        : "http://textservices.carnegiespeech.com";
     }
 
     private $customBaseURL = null;
